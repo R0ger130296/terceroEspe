@@ -1,0 +1,72 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h3 class="card-title">EDITAR USUARIO</h3>
+        <p class="card-category">Datos Personales</p>
+      </div>
+      <tbody>
+        <tr>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4">
+                <label class="font-weight-bold">Nombres:</label>
+                <input type="text"  [readonly]="!editable" style="text-transform:uppercase;" class="form-control " name="nombre" id="nombre"
+                  [(ngModel)]="usuario.nombre" placeholder="NOMBRES">
+              </div>
+              <div class="col-4">
+                <label class="font-weight-bold">Apellidos: </label>
+                <input type="text" [readonly]="!editable" style="text-transform:uppercase;" class="form-control"
+                  name="apellido" id="apellido" [(ngModel)]="usuario.apellido" placeholder="APELLIDOS">
+              </div>
+              <div class="col-4">
+                <label class="font-weight-bold">Cédula: </label>
+                <input type="text" [readonly]="!editable" class="form-control" name="cedula" id="cedula"
+                  [(ngModel)]="usuario.cedula" placeholder="CEDULA">
+              </div>
+              <div class="col-4">
+                <label class="font-weight-bold">Correo: </label>
+                <input type="text" [readonly]="!editable" class="form-control" name="correoespe" id="correoespe"
+                  [(ngModel)]="usuario.email" placeholder="CORREOESPE">
+              </div>
+              <div class="col-4">
+                <label class="font-weight-bold">Contraseña: </label>
+                <div [formGroup]="editForm">
+                <input type="password"formControlName="contrasena"  class="form-control" name="password" id="password" [(ngModel)]="usuario.contrasena"
+                  placeholder="CONTRASEÑA">
+                  <span class="text-danger" *ngIf="editForm.controls['contrasena'].errors?.pattern">contraseña inválida minimo 6 caracteres</span>
+                  </div>
+              </div>
+              <div class="col-4">
+                <label class="font-weight-bold">Titulo: </label>
+                <div>
+                  <input type="text" [readonly]="!editable" class="form-control" name="telefono" id="telefono"
+                    [(ngModel)]="usuario.titulo" placeholder="TELEFONO">
+                </div>
+              </div>
+              <div class="col-4">
+                <label class="font-weight-bold">Cargo: </label>
+                <div>
+                  <input type="text" [readonly]="!editable" class="form-control" name="celular" id="celular"
+                    [(ngModel)]="usuario.cargo" placeholder="CELULAR">
+                </div>
+              </div>
+            </div>
+          </div>
+        </tr>
+        <div class="offset-9 col-3">
+          <button [disabled]="!editForm.valid" mat-raised-button class="btn btn-success btn-round btn-lg col-10 "
+            (click)="Actualizarusuario(usuario)">
+            <i class="material-icons">save</i>Guardar
+          </button>
+        </div>
+        <div class="offset-9 col-3">
+          <button mat-raised-button class="btn btn-danger btn-round btn-lg col-10"
+            [routerLink]="['/quipux/viewq']">
+            <i class="material-icons"></i>Cancelar
+          </button>
+        </div>
+      </tbody>
+    </div>
+  </div>
+</div>

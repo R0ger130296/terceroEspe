@@ -1,0 +1,16 @@
+<div class="sidebar-wrapper">
+    <div class="container-fluid">
+        <div class="logo col-10">
+            <img class="img-fluid offset-1" src="/assets/img/HELPDESK.png" width="220px" height="150px" />
+        </div>
+        <ul class="nav">
+                <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.clase}} nav-item">
+                    <a class="nav-link" [routerLink]="[menuItem.url]">
+                        <i class="material-icons">{{menuItem.icono}}</i>
+                        <p>{{menuItem.opcion}}</p>
+                    </a>
+                </li>
+            </ul>
+        <p-toast [style]="{'marginTop': '80px'}" [style.z-index]="9999"></p-toast>
+    </div>
+</div>

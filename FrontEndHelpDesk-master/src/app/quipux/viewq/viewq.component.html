@@ -1,0 +1,130 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="navbar-wrapper card-header card-header-primary">
+                <img class="img-fluid" src="../../../assets/img/Quipux.png" width="180px">
+            </div>
+            <div class="container">
+                <fieldset class="form-group">
+                    <div class="input-group no-border row justify-content-center">
+                        <input name="cedula" type="text" #cedula class="form-control col-4"
+                            placeholder="Ingrese su cédula..." style="font-family: Arial; font-size: 18px">
+                        <div>
+                            <button mat-raised-button class="btn btn-success btn-round btn-lg pull-center"
+                                (click)="buscarByCedulaU(cedula.value)">
+                                <i class="material-icons">search</i>
+                                Buscar
+                            </button>
+                            <button mat-raised-button class="btn btn-danger btn-round btn-lg pull-center"
+                                [routerLink]="['/Helpdesk']">
+                                <i class="material-icons">cancel</i>
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+
+
+
+                <div *ngIf="usuarioData?.length === 0">
+                    <div class="container-fluid">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4 class="card-title">Ingrese su número de cédula</h4>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="../../../assets/img/src_assets_img_Notificacion.png"
+                                            alt="Imagen de error" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <tbody  *ngIf="usuarioData?.length > 0">
+                    <tr *ngFor="let item of usuarioData">
+                        <div class="container-fluid">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label class="font-weight-bold">Nombres:</label>
+                                                    <p class="card-category">{{item.nombre}}</p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="font-weight-bold">Apellidos:</label>
+                                                    <p class="card-category">{{item.apellido}}</p>
+                                                </div>
+                                                <div class="col-md-4 col-sm-6 col-6">
+                                                    <label class="font-weight-bold">Cédula:</label>
+                                                    <p class="card-category">{{item.cedula}}</p>
+                                                </div>
+                                                <div class="col-md-4 col-sm-6 col-6">
+                                                    <label class="font-weight-bold">Correo:</label>
+                                                    <p class="card-category">{{item.email}}</p>
+                                                </div>
+                                                <div class="col-md-4 col-sm-6 col-6">
+                                                    <label class="font-weight-bold">titulo:</label>
+                                                    <p class="card-category">{{item.titulo}}</p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="font-weight-bold">cargo:</label>
+                                                    <p class="card-category">{{item.cargo}}</p>
+                                                </div>
+                                                <div class="col-md-4 col-6">
+                                                    <label class="font-weight-bold">dependencia:</label>
+                                                    <p class="card-category">{{item.dependencia.nombre}}</p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="font-weight-bold">contraseña:</label>
+                                                    <p class="card-category">********************</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tr>
+                    <div class="row pull-right">
+                        <div>
+                            <button mat-raised-button class="btn btn-primary btn-round btn-lg pull-left"
+                                [routerLink]="['/quipux/editq']" (click)="edit(usuarioData)">
+                                <i class="material-icons">edit</i>Editar</button>
+                            <button mat-raised-button class="btn btn-danger btn-round btn-lg pull-left"
+                                data-toggle="modal" data-target="#myModal">Borrar</button>
+                        </div>
+                    </div>
+                </tbody>
+
+
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">ESTA SEGURO QUE DESEA ELIMINAR</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button mat-raised-button class="btn btn-primary btn-round btn-lg pull-left"
+                                    data-dismiss="modal">&times;cancelar</button>
+                                <button mat-raised-button class="btn btn-danger btn-round btn-lg pull-left"
+                                    [routerLink]="['/quipux/viewq']" (click)="Borrar(usuarioaData)">
+                                    <i class="material-icons">delete</i>eliminar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

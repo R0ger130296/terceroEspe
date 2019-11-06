@@ -1,0 +1,136 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h3 class="card-title">EDITAR USUARIO</h3>
+                <p class="card-category">Datos Personales</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <label class="font-weight-bold">Nombres:</label>
+                        <div [formGroup]="editForm">
+                            <input type="text" formControlName="nombre" style="text-transform:uppercase;"
+                                class="form-control " name="nombre" id="nombre" [(ngModel)]="persona.nombre"
+                                placeholder="NOMBRES">
+                            <span class="text-danger" *ngIf="editForm.controls['nombre'].errors?.pattern">nombre inválido</span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="font-weight-bold">Apellidos: </label>
+                        <div [formGroup]="editForm">
+                            <input type="text" formControlName="apellido" style="text-transform:uppercase;"
+                                class="form-control" name="apellido" id="apellido" [(ngModel)]="persona.apellido"
+                                placeholder="APELLIDOS">
+                            <span class="text-danger" *ngIf="editForm.controls['apellido'].errors?.pattern">apelido inválido</span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="font-weight-bold">Cédula: </label>
+                        <input type="text" [readonly]="!editable" class="form-control" name="cedula" id="cedula"
+                            [(ngModel)]="persona.cedula" placeholder="CEDULA">
+                    </div>
+                    <div class="col-4">
+
+                        <label class="font-weight-bold">Genero: </label>
+                        <select class="form-control" [(ngModel)]="persona.genero.id" name="select">
+                            <option value="1">HOMBRE</option>
+                            <option value="2">MUJER</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label class="font-weight-bold">Tipo Estudiante: </label>
+                        <select class="form-control" [(ngModel)]="persona.estudiante.id" name="select" id="tipo">
+                            <option value="1">CIVIL</option>
+                            <option value="2">MILITAR</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label class="font-weight-bold">Etnia: </label>
+                        <select class="form-control" [(ngModel)]="persona.etniaCodigo" name="etnia" id="etnia">
+                            <option value="MESTIZO/A">MESTIZO/A</option>
+                            <option value="AFROECUATORIANO/A">AFROECUATORIANO/A</option>
+                            <option value="BLANCO/A">BLANCO/A</option>
+                            <option value="INDIGENA">INDIGENA</option>
+                            <option value="MONTUBIO/A">MONTUBIO/A</option>
+                            <option value="MULATO/A">MULATO/A</option>
+                            <option value="NEGRO/A">NEGRO/A</option>
+                            <option value="OTRO">OTRO</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label class="font-weight-bold">Telefono: </label>
+                        <div [formGroup]="editForm">
+                            <input type="text" formControlName="telefono" class="form-control" name="telefono"
+                                id="telefono" [(ngModel)]="persona.telefono" placeholder="TELEFONO">
+                            <span class="text-danger" *ngIf="editForm.controls['telefono'].errors?.pattern">telefono inválido</span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="font-weight-bold">Celular: </label>
+                        <div [formGroup]="editForm">
+                            <input type="text" formControlName="celular" class="form-control" name="celular"
+                                id="celular" [(ngModel)]="persona.celular" placeholder="CELULAR">
+                            <span class="text-danger" *ngIf="editForm.controls['celular'].errors?.pattern">celular inválido</span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="font-weight-bold">Correo Institucional: </label>
+                        <div [formGroup]="editForm">
+                            <input type="email" formControlName="correoespe" ng-model="emailI" class="form-control"
+                                name="email" id="correoI" [(ngModel)]="persona.correoEspe" placeholder="CORREO ESPE"
+                                required>
+                            <span class="text-danger" *ngIf="editForm.controls['correoespe'].errors?.pattern">correo espe inválido</span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="font-weight-bold">Direccion: </label>
+                        <textarea type="text" style="text-transform:uppercase;" class="form-control" name="direccion"
+                            id="direccion" [(ngModel)]="persona.direccion" placeholder="DIRECCION"> </textarea>
+                    </div>
+                    <div class="row col-12">
+                        <div class="col-4">
+                            <label class="font-weight-bold">Correo Personal: </label>
+                            <div [formGroup]="editForm">
+                                <input type="email" formControlName="correopersonal" ng-model="emailP"
+                                    class="form-control" name="emailp" id="correo personal"
+                                    [(ngModel)]="persona.correoPersonal" placeholder="CORREO PERSONAL">
+                                <span class="text-danger" *ngIf="editForm.controls['correopersonal'].errors?.pattern">correo personal inválido</span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label class="font-weight-bold">Contraseña:</label>
+                            <input type="text" class="form-control" name="contraseña" id="contraseña"
+                                [(ngModel)]="persona.password" placeholder="CONTRASEÑA">
+                        </div>
+                        <div class="offset-1 col-3">
+                            <button [disabled]="!editForm.valid" mat-raised-button
+                                class="btn btn-success btn-round btn-lg col-10 "
+                                (click)="Actualizar(persona, crugeruser)">
+                                <i class="material-icons">save</i>Guardar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row col-12">
+                        <div class="col-4">
+                            <label class="font-weight-bold">Correo: </label>
+                            <input type="text" [readonly]="!editable" class="form-control" name="correoespe"
+                                id="correoespe" [(ngModel)]="crugeruser.correoEspe" placeholder="CORREOESPE">
+                        </div>
+                        <div class="col-4">
+                            <label class="font-weight-bold">Contraseña: </label>
+                            <input type="text" [readonly]="!editable" class="form-control" name="password" id="password"
+                                [(ngModel)]="crugeruser.password" placeholder="CONTRASEÑA">
+                        </div>
+                        <div class="offset-1 col-3">
+                            <button mat-raised-button class="btn btn-danger btn-round btn-lg col-10"
+                                [routerLink]="['/alumni/view']">
+                                <i class="material-icons">cancel</i>Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

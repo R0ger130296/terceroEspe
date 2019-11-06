@@ -1,0 +1,146 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="navbar-wrapper card-header card-header-primary">
+                <img class="img-fluid" src="../../../assets/img/ALUMNI.png" width="180px">
+            </div>
+            <div class="container">
+                <fieldset class="form-group">
+                    <div class="input-group no-border row justify-content-center">
+                        <input name="cedula" type="text" #cedula class="form-control col-4"
+                            placeholder="Ingrese su cédula..." style="font-family: Arial; font-size: 18px">
+                        <div>
+                            <button mat-raised-button class="btn btn-primary btn-round btn-lg pull-center"
+                                (click)="buscarByCedula(cedula.value)">
+                                <i class="material-icons">search</i>
+                                Buscar
+                            </button>
+                            <button mat-raised-button class="btn btn-danger btn-round btn-lg pull-center"
+                                [routerLink]="['/Helpdesk']">
+                                <i class="material-icons">cancel</i>
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+
+
+
+                <div *ngIf="!personaData">
+                    <div class="container-fluid">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4 class="card-title">Ingrese su número de cédula</h4>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="../../../assets/img/src_assets_img_Notificacion.png"
+                                            alt="Imagen de error" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div *ngIf="personaData">
+                    <div class="container-fluid">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="font-weight-bold">Nombres:</label>
+                                                <p class="card-category">{{personaData.nombre}}</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="font-weight-bold">Apellidos:</label>
+                                                <p class="card-category">{{personaData.apellido}}</p>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-6">
+                                                <label class="font-weight-bold">Cédula:</label>
+                                                <p class="card-category">{{personaData.cedula}}</p>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-6">
+                                                <label class="font-weight-bold">Género:</label>
+                                                <p class="card-category">{{personaData.genero.nombre}}</p>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-6">
+                                                <label class="font-weight-bold">Etnia:</label>
+                                                <p class="card-category">{{personaData.etniaCodigo}}</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="font-weight-bold">Estudiante:</label>
+                                                <p class="card-category">{{personaData.estudiante.nombre}}</p>
+                                            </div>
+                                            <div class="col-md-4 col-6">
+                                                <label class="font-weight-bold">Telefono:</label>
+                                                <p class="card-category">{{personaData.telefono}}</p>
+                                            </div>
+                                            <div class="col-md-4 col-6">
+                                                <label class="font-weight-bold">Celular:</label>
+                                                <p class="card-category">{{personaData.celular}}</p>
+                                            </div>
+                                            <div class="col-md-4 col-6">
+                                                <label class="font-weight-bold">Correo Personal:</label>
+                                                <p class="card-category">{{personaData.correoPersonal}}</p>
+                                            </div>
+                                            <div class="col-md-4 col-6">
+                                                <label class="font-weight-bold">Correo ESPE:</label>
+                                                <p class="card-category">{{personaData.correoEspe}}</p>
+                                            </div>
+                                            <div class="col-md-5 col-6">
+                                                <label class="font-weight-bold">Dirección:</label>
+                                                <p class="card-category">{{personaData.direccion}}</p>
+                                            </div>
+                                            <div class="col-md-3 col-6">
+                                                <label class="font-weight-bold">Contraseña:</label>
+                                                <p class="card-category">{{personaData.password}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row pull-right">
+                                    <div *ngIf="personaData">
+                                        <button mat-raised-button class="btn btn-primary btn-round btn-lg pull-left"
+                                            [routerLink]="['/alumni/edit']" (click)="edit(personaData,crugeruserData)">
+                                            <i class="material-icons">edit</i>Editar</button>
+                                        <button mat-raised-button class="btn btn-danger btn-round btn-lg pull-left"
+                                            data-toggle="modal" data-target="#myModal">Borrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">ESTA SEGURO QUE DESEA ELIMINAR</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button mat-raised-button class="btn btn-primary btn-round btn-lg pull-left"
+                                    data-dismiss="modal">&times;cancelar</button>
+                                <button mat-raised-button class="btn btn-danger btn-round btn-lg pull-left"
+                                    [routerLink]="['/alumni/view']" (click)="Borrar(personaData,crugeruserData)">
+                                    <i class="material-icons">delete</i>eliminar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
